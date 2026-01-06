@@ -1,0 +1,13 @@
+import React from 'react'
+
+const Footer = () => {
+  return (
+    <footer className="footer sm:footer-horizontal bg-base-100 shadow-sm footer-center text-base-content p-4 fixed bottom-0 left-0 w-full">
+        <aside>
+            <p>Copyright © {new Date().getFullYear()} - All right reserved by MercadoPreso Ltd</p>
+        </aside>
+    </footer>
+  )
+}
+
+export default Footer
