@@ -74,7 +74,6 @@ const Profile = () => {
         <label className="label"><b>Email</b></label>
         <input type="text" className="input" value={profileData?.email || ''} disabled/>
         </fieldset>
-        <button className="btn btn-link mt-4" onClick={() => navigate('/reset-password')}>Cambiar contraseña</button>
         </div>
      </div>
     </>
