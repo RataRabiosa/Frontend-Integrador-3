@@ -9,7 +9,7 @@ const CartModal = () => {
     const { clearCart, totalCheckout, totalCartItems } = CartStorage();
 
     // desestructurar useForm
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit, register, reset } = useForm();
     const [profileData, setProfileData] = useState(null);
     const { token } = UserAuth();
 
@@ -29,6 +29,12 @@ const CartModal = () => {
                     throw new Error(`Error al obtener perfil - status: ${resp.status}`);
                 }
                 const json = await resp.json();
+                reset({
+                    nombre: json.message.firstName + ' ' + json.message.lastName,
+                    correo: json.message.email,
+                    telefono: json.message.phone || ''
+                });
+                    
                 setProfileData(json.message);
                 } catch (err) {
                     setIsError(err.message || "Error al obtener perfil. Por favor, intente nuevamente más tarde.");
@@ -91,10 +97,10 @@ const CartModal = () => {
                         <legend className="fieldset-legend">Detalles del pago</legend>
 
                         <label className="label">Nombre</label>
-                        <input type="text" className="input" placeholder="John Doe" value={profileData?.firstName + ' ' + profileData?.lastName} {...register("nombre", {required: true})}/>
+                        <input type="text" className="input" placeholder="John Doe" {...register("nombre", {required: true})}/>
 
                         <label className="label">Correo</label>
-                        <input type="text" className="input" placeholder="john@doe.com" value={profileData?.email} {...register("correo", {required: true})}/>
+                        <input type="text" className="input" placeholder="john@doe.com" {...register("correo", {required: true})}/>
 
                         <label className="label">Telefono</label>
                         <input type="text" className="input" placeholder="1234567890" {...register("telefono", {required: true})}/>
