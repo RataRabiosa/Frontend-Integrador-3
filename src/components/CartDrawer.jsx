@@ -71,7 +71,7 @@ const { token } = UserAuth();
                             <button className="btn btn-sm" onClick={() => increaseItem(item.id)}>+</button>
                           </div>
                         </td>
-                        <td>${item.price.toFixed(2)}</td>
+                        <td>${item.subtotal.toFixed(2)}</td>
                       </tr>
                     ))}
                   </tbody>
